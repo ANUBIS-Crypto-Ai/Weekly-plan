@@ -7,35 +7,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --black:#000; --dark:#080808; --card:#0d0d0d; --card2:#111;
-  --white:#f0f0f0; --grey:#555; --lgrey:#888;
-  --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.12);
-  --accent:#c8ff00; --accent2:rgba(200,255,0,0.15); --accent3:rgba(200,255,0,0.06);
-  --cyan:#00d4ff; --magenta:#ff00aa; --red:#ff3a3a;
-  --glow:0 0 24px rgba(200,255,0,0.35);
+  --bg:#ffffff;
+  --dark:#f7f7f5;
+  --card:#f2f1ee;
+  --card2:#ebebea;
+  --white:#0a0a0a;
+  --grey:#888;
+  --lgrey:#555;
+  --border:rgba(0,0,0,0.07);
+  --border2:rgba(0,0,0,0.13);
+  --accent:#000000;
+  --accent2:rgba(0,0,0,0.12);
+  --accent3:rgba(0,0,0,0.05);
+  --cyan:#0066ff;
+  --magenta:#cc00aa;
+  --red:#dd2222;
+  --glow:0 0 0 0 rgba(0,0,0,0.4);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'Space Grotesk',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+body{font-family:'Space Grotesk',sans-serif;background:#ffffff;color:var(--white);overflow-x:hidden;}
 
 body::before{content:'';position:fixed;inset:0;z-index:0;
-  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.03) 1px,transparent 1px);
   background-size:60px 60px;pointer-events:none;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 48px;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(0,0,0,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+  background:rgba(255,255,255,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .nav-brand{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:var(--white);
   letter-spacing:0.12em;text-decoration:none;display:flex;align-items:center;gap:8px;}
-.nav-brand .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:var(--glow);}
+.nav-brand .dot{width:6px;height:6px;border-radius:50%;background:#000;animation:dot-pulse 2s ease-in-out infinite;}
+@keyframes dot-pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,0,0,0.35)}50%{box-shadow:0 0 0 6px rgba(0,0,0,0)}}
 .nav-links{display:flex;align-items:center;gap:32px;}
-.nav-links a{font-size:11px;color:var(--lgrey);text-decoration:none;letter-spacing:0.08em;
+.nav-links a{font-size:11px;color:var(--grey);text-decoration:none;letter-spacing:0.08em;
   font-family:'Space Mono',monospace;text-transform:uppercase;transition:color .2s;}
 .nav-links a:hover{color:var(--white);}
-.nav-cta{background:transparent!important;border:1px solid var(--border2)!important;color:var(--white)!important;
-  padding:8px 18px;border-radius:4px;font-size:11px!important;transition:all .2s!important;text-decoration:none;letter-spacing:0.08em;}
-.nav-cta:hover{border-color:var(--accent)!important;color:var(--accent)!important;}
+.nav-cta{background:#000!important;border:1px solid #000!important;color:#fff!important;
+  padding:8px 18px;border-radius:4px;font-size:11px!important;transition:all .3s!important;
+  text-decoration:none;letter-spacing:0.08em;animation:btn-ring 2.2s ease-in-out infinite;}
+.nav-cta:hover{background:#333!important;transform:translateY(-1px);box-shadow:0 4px 18px rgba(0,0,0,0.22)!important;}
 
 .nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
 .nav-burger span{display:block;width:22px;height:1.5px;background:var(--white);transition:all .3s;}
@@ -43,31 +55,43 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 48px;
 .nav-burger.open span:nth-child(2){opacity:0;}
 .nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
 .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;z-index:499;
-  background:rgba(0,0,0,0.97);backdrop-filter:blur(20px);
+  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
   padding:28px 24px;border-bottom:1px solid var(--border);flex-direction:column;}
 .mobile-menu.open{display:flex;}
 .mobile-menu a{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
-  color:var(--lgrey);text-decoration:none;padding:16px 0;border-bottom:1px solid var(--border);}
+  color:var(--grey);text-decoration:none;padding:16px 0;border-bottom:1px solid var(--border);}
 .mobile-menu a:hover{color:var(--white);}
-.mobile-menu .m-cta{color:var(--accent)!important;border-bottom:none!important;}
+.mobile-menu .m-cta{color:#000!important;border-bottom:none!important;font-weight:700;}
 
-.scroll-line{position:fixed;top:0;left:0;height:2px;z-index:1000;background:var(--accent);box-shadow:var(--glow);width:0%;}
+.scroll-line{position:fixed;top:0;left:0;height:2px;z-index:1000;background:#000;width:0%;}
+
+/* BUTTONS */
+@keyframes btn-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(0,0,0,0.30); }
+  60%  { box-shadow: 0 0 0 10px rgba(0,0,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+}
+@keyframes btn-ring-hover {
+  0%   { box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 0 rgba(0,0,0,0.25); }
+  60%  { box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 12px rgba(0,0,0,0); }
+  100% { box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 0 rgba(0,0,0,0); }
+}
 
 /* HERO */
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;
   justify-content:center;padding:120px 48px 80px;}
-.hero-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--accent);
+.hero-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#000;
   text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:10px;}
-.hero-label::before{content:'';width:24px;height:1px;background:var(--accent);box-shadow:var(--glow);}
+.hero-label::before{content:'';width:24px;height:1px;background:#000;}
 .hero-title{font-size:clamp(42px,7vw,96px);font-weight:700;line-height:1.0;letter-spacing:-0.03em;max-width:980px;margin-bottom:32px;}
-.hero-title .accent-word{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.3);}
-.hero-title .accent-hl{color:var(--accent);text-shadow:0 0 40px rgba(200,255,0,0.4);}
+.hero-title .accent-word{color:transparent;-webkit-text-stroke:1.5px rgba(0,0,0,0.25);}
+.hero-title .accent-hl{color:#000;}
 .hero-sub{font-size:16px;color:var(--lgrey);max-width:620px;line-height:1.7;margin-bottom:52px;}
 .hero-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
-.btn-primary{background:var(--accent);color:#000;padding:14px 32px;border-radius:4px;font-weight:700;
+.btn-primary{background:#000;color:#fff;padding:14px 32px;border-radius:4px;font-weight:700;
   font-size:13px;text-decoration:none;letter-spacing:0.04em;
-  box-shadow:0 0 32px rgba(200,255,0,0.3);transition:all .2s;}
-.btn-primary:hover{box-shadow:0 0 52px rgba(200,255,0,0.5);transform:translateY(-2px);}
+  animation:btn-ring 2s ease-in-out infinite;transition:transform .2s,background .2s;}
+.btn-primary:hover{background:#222;transform:translateY(-2px);animation:btn-ring-hover 1.4s ease-in-out infinite;}
 .btn-secondary{color:var(--lgrey);font-size:13px;text-decoration:none;letter-spacing:0.04em;
   display:flex;align-items:center;gap:8px;transition:color .2s;}
 .btn-secondary:hover{color:var(--white);}
@@ -76,16 +100,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 48px;
 .hero-stats{position:absolute;bottom:60px;right:48px;display:flex;gap:48px;z-index:1;}
 .stat-item{text-align:right;}
 .stat-num{font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:var(--white);line-height:1;}
-.stat-num span{color:var(--accent);}
+.stat-num span{color:#000;}
 .stat-label{font-size:10px;color:var(--grey);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;}
 .hero-deco{position:absolute;top:50%;right:32px;transform:translateY(-50%);width:710px;height:710px;z-index:0;}
 #particleCanvas{display:block;}
 @media(max-width:900px){
-  .hero-deco{display:block!important;width:546px;height:546px;top:42%;left:50%;right:auto;transform:translate(-50%,-50%);opacity:0.65;}
+  .hero-deco{display:block!important;width:546px;height:546px;top:42%;left:50%;right:auto;transform:translate(-50%,-50%);opacity:0.45;}
   #particleCanvas{width:546px!important;height:546px!important;}
 }
 @media(max-width:480px){
-  .hero-deco{width:440px;height:440px;opacity:0.55;}
+  .hero-deco{width:440px;height:440px;opacity:0.35;}
   #particleCanvas{width:440px!important;height:440px!important;}
 }
 
@@ -94,35 +118,36 @@ section{position:relative;z-index:1;padding:100px 48px;}
 .section-header{display:flex;align-items:flex-end;justify-content:space-between;
   margin-bottom:60px;border-bottom:1px solid var(--border);padding-bottom:24px;}
 .section-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;
-  color:var(--accent);text-transform:uppercase;margin-bottom:12px;}
+  color:#000;text-transform:uppercase;margin-bottom:12px;}
 .section-title{font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-0.02em;line-height:1.1;}
 .section-count{font-family:'Space Mono',monospace;font-size:11px;color:var(--grey);letter-spacing:0.1em;}
 
 /* MARQUEE */
 .marquee-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  overflow:hidden;padding:18px 0;position:relative;z-index:1;}
+  overflow:hidden;padding:18px 0;position:relative;z-index:1;background:var(--dark);}
 .marquee-track{display:flex;gap:0;animation:marquee-go 32s linear infinite;white-space:nowrap;}
 .marquee-item{display:inline-flex;align-items:center;gap:16px;padding:0 32px;
   font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.15em;color:var(--grey);text-transform:uppercase;}
-.marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+.marquee-dot{width:4px;height:4px;border-radius:50%;background:#000;flex-shrink:0;}
 @keyframes marquee-go{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* NICHES (services-grid style) */
+/* NICHES */
 .niches-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
-.niche-card{background:var(--black);padding:36px 32px;position:relative;overflow:hidden;transition:background .3s;}
+.niche-card{background:#fff;padding:36px 32px;position:relative;overflow:hidden;transition:background .3s;}
 .niche-card:hover{background:var(--card);}
-.niche-card:hover .niche-icon{box-shadow:var(--glow);border-color:var(--accent);color:var(--accent);}
+.niche-card:hover .niche-icon{border-color:#000;color:#000;}
 .niche-num{font-family:'Space Mono',monospace;font-size:10px;color:var(--grey);letter-spacing:0.15em;margin-bottom:24px;}
 .niche-icon{width:44px;height:44px;border:1px solid var(--border2);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;margin-bottom:22px;transition:all .3s;font-size:20px;color:var(--lgrey);}
+  display:flex;align-items:center;justify-content:center;margin-bottom:22px;transition:all .3s;font-size:20px;color:var(--grey);}
 .niche-name{font-size:18px;font-weight:600;margin-bottom:8px;letter-spacing:-0.01em;}
-.niche-tag{font-family:'Space Mono',monospace;font-size:9px;color:var(--accent);letter-spacing:0.12em;
-  text-transform:uppercase;margin-bottom:14px;display:inline-block;border:1px solid var(--accent2);padding:3px 8px;border-radius:2px;}
+.niche-tag{font-family:'Space Mono',monospace;font-size:9px;color:#000;letter-spacing:0.12em;
+  text-transform:uppercase;margin-bottom:14px;display:inline-block;border:1px solid rgba(0,0,0,0.25);
+  padding:3px 8px;border-radius:2px;}
 .niche-desc{font-size:13px;color:var(--lgrey);line-height:1.7;margin-bottom:16px;}
 .niche-output{font-family:'Space Mono',monospace;font-size:10px;color:var(--grey);letter-spacing:0.05em;
   padding-top:14px;border-top:1px dashed var(--border);}
-.niche-output b{color:var(--white);font-weight:400;}
-.niche-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width .4s ease;}
+.niche-output b{color:var(--white);font-weight:600;}
+.niche-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#000;transition:width .4s ease;}
 .niche-card:hover::after{width:100%;}
 
 /* AFFILIATE TABLES */
@@ -131,28 +156,28 @@ section{position:relative;z-index:1;padding:100px 48px;}
 .aff-block-head{display:flex;align-items:center;justify-content:space-between;
   margin-bottom:18px;gap:16px;flex-wrap:wrap;}
 .aff-block-title{font-size:20px;font-weight:600;letter-spacing:-0.01em;display:flex;align-items:center;gap:12px;}
-.aff-block-title .marker{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:var(--glow);}
+.aff-block-title .marker{width:6px;height:6px;border-radius:50%;background:#000;animation:dot-pulse 2s ease-in-out infinite;}
 .aff-block-sub{font-family:'Space Mono',monospace;font-size:10px;color:var(--grey);letter-spacing:0.08em;}
 
-.aff-table{width:100%;border-collapse:collapse;border:1px solid var(--border);background:var(--card);}
+.aff-table{width:100%;border-collapse:collapse;border:1px solid var(--border);background:#fff;}
 .aff-table thead th{
   text-align:left;padding:14px 20px;
   font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;
-  text-transform:uppercase;color:var(--grey);background:rgba(255,255,255,0.02);
+  text-transform:uppercase;color:var(--grey);background:var(--dark);
   border-bottom:1px solid var(--border);font-weight:400;
 }
 .aff-table tbody td{padding:16px 20px;border-bottom:1px solid var(--border);font-size:13px;}
 .aff-table tbody tr:last-child td{border-bottom:none;}
-.aff-table tbody tr:hover{background:rgba(200,255,0,0.03);}
+.aff-table tbody tr:hover{background:var(--card);}
 .aff-table .nm{color:var(--white);font-weight:600;font-family:'Space Mono',monospace;letter-spacing:0.04em;font-size:12px;}
 .aff-table .rt{color:var(--lgrey);}
-.aff-table .url a{color:var(--accent);text-decoration:none;font-family:'Space Mono',monospace;font-size:11px;}
-.aff-table .url a:hover{color:var(--cyan);}
+.aff-table .url a{color:#000;text-decoration:none;font-family:'Space Mono',monospace;font-size:11px;border-bottom:1px solid rgba(0,0,0,0.2);}
+.aff-table .url a:hover{color:#333;border-color:#000;}
 .aff-table .ac{display:inline-block;padding:3px 9px;font-family:'Space Mono',monospace;
   font-size:9px;letter-spacing:0.1em;text-transform:uppercase;border-radius:3px;}
-.aff-table .ac.pub{color:var(--accent);background:var(--accent3);border:1px solid var(--accent2);}
-.aff-table .ac.dm{color:var(--magenta);background:rgba(255,0,170,0.08);border:1px solid rgba(255,0,170,0.25);}
-.aff-table .ac.em{color:var(--cyan);background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.25);}
+.aff-table .ac.pub{color:#000;background:rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.18);}
+.aff-table .ac.dm{color:var(--magenta);background:rgba(204,0,170,0.06);border:1px solid rgba(204,0,170,0.2);}
+.aff-table .ac.em{color:var(--cyan);background:rgba(0,102,255,0.06);border:1px solid rgba(0,102,255,0.2);}
 
 @media(max-width:760px){
   .aff-table thead{display:none;}
@@ -162,114 +187,112 @@ section{position:relative;z-index:1;padding:100px 48px;}
   .aff-table tbody tr:last-child td:last-child{border-bottom:none;}
 }
 
-/* Email callout */
+/* Callout */
 .callout{display:flex;align-items:center;gap:18px;padding:22px 26px;
-  background:linear-gradient(135deg,rgba(200,255,0,0.06),rgba(200,255,0,0.01));
-  border:1px solid var(--accent2);border-radius:6px;margin-bottom:40px;}
+  background:rgba(0,0,0,0.04);
+  border:1px solid rgba(0,0,0,0.12);border-radius:6px;margin-bottom:40px;}
 .callout-icon{flex-shrink:0;width:42px;height:42px;border-radius:8px;
-  background:var(--accent3);border:1px solid var(--accent2);
-  display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--accent);}
+  background:rgba(0,0,0,0.07);border:1px solid rgba(0,0,0,0.14);
+  display:flex;align-items:center;justify-content:center;font-size:20px;color:#000;}
 .callout-text{font-size:13.5px;color:var(--lgrey);line-height:1.65;}
-.callout-text b{color:var(--accent);font-weight:500;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.05em;}
+.callout-text b{color:#000;font-weight:600;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.05em;}
 
 /* OUTREACH TEMPLATES */
 .tpl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
-.tpl{padding:28px;border:1px solid var(--border);background:var(--card);border-radius:6px;
-  transition:border-color .25s, background .25s;}
-.tpl:hover{border-color:var(--accent2);background:var(--card2);}
+.tpl{padding:28px;border:1px solid var(--border);background:#fff;border-radius:6px;
+  transition:border-color .25s,box-shadow .25s;}
+.tpl:hover{border-color:rgba(0,0,0,0.2);box-shadow:0 4px 24px rgba(0,0,0,0.06);}
 .tpl-head{display:flex;align-items:center;justify-content:space-between;
   margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border);}
 .tpl-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--accent);padding:3px 10px;border:1px solid var(--accent2);border-radius:3px;background:var(--accent3);}
+  color:#000;padding:3px 10px;border:1px solid rgba(0,0,0,0.2);border-radius:3px;background:rgba(0,0,0,0.05);}
 .tpl-name{font-size:15px;font-weight:600;letter-spacing:-0.01em;}
 .tpl-body{font-family:'Space Mono',monospace;font-size:11.5px;line-height:1.75;color:var(--lgrey);
-  background:var(--black);border:1px solid var(--border);border-radius:4px;padding:18px 20px;white-space:pre-wrap;}
-.tpl-body .var{color:var(--accent);}
-.tpl-body .hi{color:var(--white);}
+  background:var(--dark);border:1px solid var(--border);border-radius:4px;padding:18px 20px;white-space:pre-wrap;}
+.tpl-body .var{color:#000;font-weight:700;}
+.tpl-body .hi{color:#333;}
 .tpl-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;
   font-family:'Space Mono',monospace;font-size:10px;color:var(--grey);letter-spacing:0.05em;}
 .tpl-meta span{display:inline-flex;align-items:center;gap:6px;}
-.tpl-meta span::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--accent);}
+.tpl-meta span::before{content:'';width:4px;height:4px;border-radius:50%;background:#000;}
 
 /* COMPETITIVE AUDIT */
 .audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-start;}
 .audit-head{font-size:clamp(24px,2.8vw,38px);font-weight:700;letter-spacing:-0.02em;line-height:1.15;margin-bottom:20px;}
-.audit-head em{font-style:normal;color:var(--accent);}
+.audit-head em{font-style:normal;color:#000;}
 .audit-body{font-size:14px;color:var(--lgrey);line-height:1.8;}
 .audit-body p{margin-bottom:14px;}
-.audit-body strong{color:var(--white);font-weight:500;}
+.audit-body strong{color:var(--white);font-weight:600;}
 .audit-targets{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);}
-.audit-target{background:var(--black);padding:24px 22px;}
-.audit-target-name{font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:var(--accent);letter-spacing:0.05em;margin-bottom:6px;}
+.audit-target{background:#fff;padding:24px 22px;}
+.audit-target-name{font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#000;letter-spacing:0.05em;margin-bottom:6px;}
 .audit-target-url{font-family:'Space Mono',monospace;font-size:10px;color:var(--grey);letter-spacing:0.03em;margin-bottom:14px;}
 .audit-target-what{font-size:12px;color:var(--lgrey);line-height:1.7;}
 .audit-tools{margin-top:32px;padding:20px 24px;background:var(--card);border:1px solid var(--border);border-radius:4px;}
 .audit-tools-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;
-  text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  text-transform:uppercase;color:#000;margin-bottom:10px;}
 .audit-tools-list{font-size:13px;color:var(--lgrey);line-height:1.7;}
-.audit-tools-list b{color:var(--white);font-weight:500;}
+.audit-tools-list b{color:var(--white);font-weight:600;}
 
 /* TELEGRAM / DISCORD CARDS */
 .tg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
-.tg-card{padding:32px 28px;background:var(--card);border:1px solid var(--border);border-radius:6px;transition:border-color .25s, background .25s;}
-.tg-card:hover{border-color:var(--accent2);background:var(--card2);}
+.tg-card{padding:32px 28px;background:#fff;border:1px solid var(--border);border-radius:6px;transition:border-color .25s,box-shadow .25s;}
+.tg-card:hover{border-color:rgba(0,0,0,0.18);box-shadow:0 4px 24px rgba(0,0,0,0.06);}
 .tg-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border);}
 .tg-icon{width:40px;height:40px;border-radius:8px;border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--accent);background:var(--accent3);}
-.tg-icon.cyan{color:var(--cyan);background:rgba(0,212,255,0.08);border-color:rgba(0,212,255,0.25);}
-.tg-icon.magenta{color:var(--magenta);background:rgba(255,0,170,0.08);border-color:rgba(255,0,170,0.25);}
+  display:flex;align-items:center;justify-content:center;font-size:18px;color:#000;background:rgba(0,0,0,0.06);}
+.tg-icon.cyan{color:var(--cyan);background:rgba(0,102,255,0.07);border-color:rgba(0,102,255,0.2);}
+.tg-icon.magenta{color:var(--magenta);background:rgba(204,0,170,0.07);border-color:rgba(204,0,170,0.2);}
 .tg-title{font-size:17px;font-weight:600;letter-spacing:-0.01em;}
 .tg-sub{font-family:'Space Mono',monospace;font-size:10px;color:var(--grey);letter-spacing:0.05em;margin-top:3px;}
 .tg-list{list-style:none;}
-.tg-list li{padding:11px 0;font-size:13.5px;color:var(--white);border-bottom:1px solid rgba(255,255,255,0.04);
+.tg-list li{padding:11px 0;font-size:13.5px;color:var(--white);border-bottom:1px solid rgba(0,0,0,0.05);
   display:flex;align-items:flex-start;gap:12px;}
 .tg-list li:last-child{border-bottom:none;}
-.tg-list li::before{content:'▸';color:var(--accent);font-family:'Space Mono',monospace;flex-shrink:0;}
-.tg-list li b{color:var(--accent);font-weight:600;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.04em;display:block;margin-bottom:3px;}
+.tg-list li::before{content:'▸';color:#000;font-family:'Space Mono',monospace;flex-shrink:0;}
+.tg-list li b{color:#000;font-weight:700;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.04em;display:block;margin-bottom:3px;}
 .tg-list li .desc{color:var(--lgrey);font-size:12px;display:block;}
 
-/* AUTOMATION TOOLS — 4 col */
+/* AUTOMATION TOOLS */
 .tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
-.tool{background:var(--black);padding:32px 26px;transition:background .25s;position:relative;}
-.tool:hover{background:rgba(200,255,0,0.025);}
+.tool{background:#fff;padding:32px 26px;transition:background .25s;position:relative;}
+.tool:hover{background:var(--card);}
+.tool::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#000;transition:width .4s;}
+.tool:hover::after{width:100%;}
 .tool-num{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--grey);margin-bottom:18px;}
-.tool-icon{width:42px;height:42px;border-radius:8px;background:var(--accent3);border:1px solid var(--accent2);
-  display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--accent);margin-bottom:18px;}
+.tool-icon{width:42px;height:42px;border-radius:8px;background:rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.14);
+  display:flex;align-items:center;justify-content:center;font-size:20px;color:#000;margin-bottom:18px;}
 .tool h4{font-size:16px;font-weight:600;letter-spacing:-0.01em;margin-bottom:10px;}
 .tool p{font-size:12.5px;color:var(--lgrey);line-height:1.65;}
 
-/* TIMELINE WEEK */
+/* TIMELINE */
 .timeline{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
-.tl{background:var(--black);padding:24px 18px;transition:background .25s;}
-.tl:hover{background:rgba(200,255,0,0.03);}
-.tl-day{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;color:var(--accent);
+.tl{background:#fff;padding:24px 18px;transition:background .25s;}
+.tl:hover{background:var(--card);}
+.tl-day{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;color:#000;
   text-transform:uppercase;margin-bottom:12px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
 .tl-name{font-size:14px;font-weight:600;letter-spacing:-0.01em;margin-bottom:10px;line-height:1.2;}
 .tl-list{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--lgrey);line-height:1.7;}
 .tl-list div{padding:3px 0;}
-@media(max-width:1100px){
-  .timeline{grid-template-columns:repeat(3,1fr);}
-}
-@media(max-width:700px){
-  .timeline{grid-template-columns:1fr;}
-}
+@media(max-width:1100px){.timeline{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:700px){.timeline{grid-template-columns:1fr;}}
 
 /* CTA */
 .cta-section{padding:120px 48px;text-align:center;position:relative;z-index:1;border-top:1px solid var(--border);}
-.cta-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--accent);
+.cta-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#000;
   text-transform:uppercase;margin-bottom:24px;}
 .cta-title{font-size:clamp(32px,5vw,64px);font-weight:700;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;}
-.cta-title em{font-style:normal;color:var(--accent);}
+.cta-title em{font-style:normal;color:#000;}
 .cta-sub{font-size:15px;color:var(--lgrey);margin-bottom:48px;max-width:560px;margin-inline:auto;line-height:1.7;}
 .cta-tg{display:inline-flex;align-items:center;gap:14px;font-family:'Space Mono',monospace;
-  font-size:16px;color:var(--white);text-decoration:none;
-  padding:18px 36px;border:1px solid var(--accent);border-radius:6px;background:var(--accent3);
-  letter-spacing:0.06em;transition:all .2s;}
-.cta-tg:hover{background:var(--accent);color:#000;box-shadow:var(--glow);}
+  font-size:14px;color:#fff;text-decoration:none;
+  padding:18px 36px;border:none;border-radius:6px;background:#000;
+  letter-spacing:0.06em;animation:btn-ring 2s ease-in-out infinite;transition:background .2s,transform .2s;}
+.cta-tg:hover{background:#222;transform:translateY(-2px);animation:btn-ring-hover 1.4s ease-in-out infinite;}
 
 /* FOOTER */
 footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;}
+  display:flex;align-items:center;justify-content:space-between;background:var(--dark);}
 .footer-brand{font-family:'Space Mono',monospace;font-size:12px;color:var(--grey);letter-spacing:0.08em;}
 .footer-copy{font-family:'Space Mono',monospace;font-size:10px;color:var(--grey);letter-spacing:0.05em;}
 
@@ -378,15 +401,13 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
   </div>
 </div>
 
-<!-- § 01 NICHES — приоритизация и market intelligence -->
+<!-- § 01 NICHES -->
 <section id="niches">
   <div class="section-header">
     <div><div class="section-label">// 01 — приоритизация</div><h2 class="section-title">Ниши и market intelligence</h2></div>
     <div class="section-count">06 направлений</div>
   </div>
-
   <div class="niches-grid">
-
     <div class="niche-card">
       <div class="niche-num">01</div>
       <div class="niche-icon">⬢</div>
@@ -396,7 +417,6 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
       <p class="niche-desc">Соберу таблицу топ-15 бирж: <b>rev-share %, CPA, cookie window, US-restrictions, payout schedule</b>. Источник — публичные affiliate-страницы + парсинг. Делаю scoring-матрицу «бюджет × US-friendliness × payback × средний FTD» → ранжирование, с кого начинать outbound.</p>
       <div class="niche-output">На входе: <b>подтверждение приоритетного списка</b>. На выходе: <b>Excel/Notion + ranked-list</b>.</div>
     </div>
-
     <div class="niche-card">
       <div class="niche-num">02</div>
       <div class="niche-icon">◉</div>
@@ -406,7 +426,6 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
       <p class="niche-desc">Скрейпю Twitter/Telegram L2 и perp-DEX за <b>последние 3 месяца</b>: анонсы кампаний, BD-вакансии, недавние партнёрства с медиа — сигнал «у проекта открыт бюджет». Контакты Head of Growth / BD по LinkedIn.</p>
       <div class="niche-output">На выходе: <b>20 DeFi-проектов</b> с пометкой «активный бюджет / тихие / только launch».</div>
     </div>
-
     <div class="niche-card">
       <div class="niche-num">03</div>
       <div class="niche-icon">◈</div>
@@ -416,7 +435,6 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
       <p class="niche-desc">Найду какие affiliate-программы доступны: у <b>Ledger/Trezor — публичные, у Tangem/SafePal — closed</b>. Кто реально работает с медиа, у кого закрытые BD-двери.</p>
       <div class="niche-output">На выходе: <b>список со ссылками</b> на регистрацию + <b>median rates</b> по отрасли.</div>
     </div>
-
     <div class="niche-card">
       <div class="niche-num">04</div>
       <div class="niche-icon">⊞</div>
@@ -426,7 +444,6 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
       <p class="niche-desc">Сделаю сезонный плановик: какой контент нужно подготовить к ноябрю-январю чтобы поймать US tax season — SEO-кейворды, конверсионные форматы. Подготовлю outreach к affiliate-менеджерам с argument'ом «у нас X US-traffic в crypto, готовим pre-tax-season кампанию».</p>
       <div class="niche-output">На выходе: <b>контент-календарь Nov–Jan</b> + outreach-сообщения готовые к отправке.</div>
     </div>
-
     <div class="niche-card">
       <div class="niche-num">05</div>
       <div class="niche-icon">⟁</div>
@@ -436,17 +453,15 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
       <p class="niche-desc">Это не «работаем со всеми», а отдельный B2B-pitch deck. Сегментирую: <b>dApp-разработчики vs enterprise</b> → чтобы понять, какой контент конвертит. Каждый сегмент — свой entry point на сайте.</p>
       <div class="niche-output">На выходе: <b>1-page pitch для Alchemy/QuickNode</b> + список 5 контактов в BD.</div>
     </div>
-
     <div class="niche-card">
       <div class="niche-num">06</div>
       <div class="niche-icon">▣</div>
       <div class="niche-tag">Dark Horse · High US CPA</div>
       <div class="niche-name">Crypto-карты</div>
       <p class="niche-desc">Crypto.com, Bybit Card, Plutus, Gnosis Pay. Высокий CPA в US, понятный value-prop для евергрин-контента.</p>
-      <p class="niche-desc"><b>Compliance-первый чек:</b> какие карты действительно доступны US-резидентам. <b>Crypto.com — да, Bybit Card — geo-restricted</b>. Без этого можно залить трафик впустую: пользователь кликает, идёт регистрироваться и упирается в «not available in your region».</p>
+      <p class="niche-desc"><b>Compliance-первый чек:</b> какие карты действительно доступны US-резидентам. <b>Crypto.com — да, Bybit Card — geo-restricted</b>. Без этого можно залить трафик впустую.</p>
       <div class="niche-output">На выходе: <b>матрица доступности по штатам</b> + список US-friendly карт под трафик.</div>
     </div>
-
   </div>
 </section>
 
@@ -456,15 +471,12 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
     <div><div class="section-label">// 02 — affiliate-стек</div><h2 class="section-title">Программы — подаёмся сегодня</h2></div>
     <div class="section-count">22+ программы</div>
   </div>
-
   <div class="callout">
     <div class="callout-icon">✉</div>
     <div class="callout-text">
-      <b>Внимание:</b> все программы ниже требуют <b>email для регистрации</b>. Используем единый партнёрский ящик (например <i>partners@anubis-crypto.com</i>) — все дашборды, выплаты и переписка с AM в одной точке. Личную почту не использовать.
+      <b>Внимание:</b> все программы ниже требуют <b>email для регистрации</b>. Используем единый партнёрский ящик (например <i>partners@anubis-crypto.com</i>) — все дашборды, выплаты и переписка с AM в одной точке.
     </div>
   </div>
-
-  <!-- CEX -->
   <div class="aff-block">
     <div class="aff-block-head">
       <div class="aff-block-title"><span class="marker"></span>CEX-биржи (Tier 1)</div>
@@ -484,12 +496,10 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
       </tbody>
     </table>
   </div>
-
-  <!-- Hardware wallets -->
   <div class="aff-block">
     <div class="aff-block-head">
       <div class="aff-block-title"><span class="marker"></span>Hardware wallets</div>
-      <div class="aff-block-sub">4 программы · evergreen · интеграция в best-wallets</div>
+      <div class="aff-block-sub">4 программы · evergreen</div>
     </div>
     <table class="aff-table">
       <thead><tr><th>Программа</th><th>Публичные ставки</th><th>Регистрация</th><th>Доступ</th></tr></thead>
@@ -501,8 +511,6 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
       </tbody>
     </table>
   </div>
-
-  <!-- Crypto cards -->
   <div class="aff-block">
     <div class="aff-block-head">
       <div class="aff-block-title"><span class="marker"></span>Crypto-карты — high US CPA</div>
@@ -518,8 +526,6 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
       </tbody>
     </table>
   </div>
-
-  <!-- Tax -->
   <div class="aff-block">
     <div class="aff-block-head">
       <div class="aff-block-title"><span class="marker"></span>Tax-софт</div>
@@ -534,12 +540,10 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
       </tbody>
     </table>
   </div>
-
-  <!-- RPC / Infra -->
   <div class="aff-block">
     <div class="aff-block-head">
       <div class="aff-block-title"><span class="marker"></span>RPC / Infra (B2B)</div>
-      <div class="aff-block-sub">3 проекта · outreach-driven · B2B-pitch отдельно</div>
+      <div class="aff-block-sub">3 проекта · outreach-driven</div>
     </div>
     <table class="aff-table">
       <thead><tr><th>Проект</th><th>Подача</th><th>Контакт</th><th>Доступ</th></tr></thead>
@@ -550,12 +554,10 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
       </tbody>
     </table>
   </div>
-
-  <!-- DeFi -->
   <div class="aff-block">
     <div class="aff-block-head">
       <div class="aff-block-title"><span class="marker"></span>DeFi / Perp-DEX</div>
-      <div class="aff-block-sub">4 проекта · outreach-driven · не self-serve</div>
+      <div class="aff-block-sub">4 проекта · outreach-driven</div>
     </div>
     <table class="aff-table">
       <thead><tr><th>Программа</th><th>Канал</th><th>Контакт</th><th>Доступ</th></tr></thead>
@@ -568,13 +570,13 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
     </table>
   </div>
 </section>
+
 <!-- § 04 COMPETITIVE AUDIT -->
 <section id="audit">
   <div class="section-header">
     <div><div class="section-label">// 04 — конкурентный аудит</div><h2 class="section-title">Что парсим у конкурентов</h2></div>
     <div class="section-count">05 ресурсов</div>
   </div>
-
   <div class="audit-grid">
     <div>
       <h3 class="audit-head">Кто платит, кому и <em>как часто</em></h3>
@@ -583,18 +585,16 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
         <p>→ <strong>Кто стоит в top-3 placements</strong> — это и есть проекты с открытым маркетинг-бюджетом, начинаем outreach с них.</p>
         <p>→ <strong>Какие форматы используются</strong> — table / cards / inline / sidebar. У каждого формата свой CTR и pricing.</p>
         <p>→ <strong>Есть ли «Sponsored» лейблы</strong> — отличаем платные placement от естественных.</p>
-        <p>→ <strong>Через Wayback Machine</strong> — как часто меняется рейтинг. Частая ротация = <strong>активный pricing</strong>, значит площадка живая и торгует местами в реальном времени.</p>
-        <p>Все данные забираем через <strong>API + headless browser</strong> (для JS-рендеренных страниц), складываем в Notion-таблицу с auto-update раз в неделю.</p>
+        <p>→ <strong>Через Wayback Machine</strong> — как часто меняется рейтинг. Частая ротация = <strong>активный pricing</strong>.</p>
+        <p>Все данные забираем через <strong>API + headless browser</strong>, складываем в Notion с auto-update раз в неделю.</p>
       </div>
-
       <div class="audit-tools">
         <div class="audit-tools-label">// инструменты</div>
         <div class="audit-tools-list">
-          <b>Web scraper API</b> · <b>Wayback Machine API</b> · <b>Playwright</b> для JS-рендера · <b>Ahrefs Site Explorer</b> для backlink-сигналов · <b>Notion API</b> для записи
+          <b>Web scraper API</b> · <b>Wayback Machine API</b> · <b>Playwright</b> для JS-рендера · <b>Ahrefs</b> для backlink-сигналов · <b>Notion API</b>
         </div>
       </div>
     </div>
-
     <div>
       <div class="audit-targets">
         <div class="audit-target">
@@ -615,12 +615,12 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
         <div class="audit-target">
           <div class="audit-target-name">Bankless</div>
           <div class="audit-target-url">bankless.com/listings</div>
-          <div class="audit-target-what">DeFi-focused placements, newsletter sponsorship pattern, ecosystem-focused лейблы</div>
+          <div class="audit-target-what">DeFi-focused placements, newsletter sponsorship pattern</div>
         </div>
         <div class="audit-target" style="grid-column:1 / -1;">
           <div class="audit-target-name">Milk Road</div>
           <div class="audit-target-url">milkroad.com</div>
-          <div class="audit-target-what">Newsletter-first монетизация, спонсорские слоты с прозрачным ценником, точки входа для affiliate</div>
+          <div class="audit-target-what">Newsletter-first монетизация, спонсорские слоты с прозрачным ценником</div>
         </div>
       </div>
     </div>
@@ -633,7 +633,6 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
     <div><div class="section-label">// 05 — telegram inbound</div><h2 class="section-title">Telegram-каналы и чаты</h2></div>
     <div class="section-count">02 слоя</div>
   </div>
-
   <div class="tg-grid">
     <div class="tg-card">
       <div class="tg-head">
@@ -647,25 +646,23 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
         <li><div><b>Крипта B2B / Affiliate UA-CEO</b><span class="desc">Локальные чаты для фаундеров, медиабайеров и представителей бирж.</span></div></li>
       </ul>
     </div>
-
     <div class="tg-card">
       <div class="tg-head">
         <div class="tg-icon cyan">◎</div>
         <div><div class="tg-title">Крупные смежные каналы</div><div class="tg-sub">// для платной публикации / поиска рекламодателей</div></div>
       </div>
       <ul class="tg-list">
-        <li><div><b>ICO Drops</b><span class="desc">Огромная концентрация проектов на стадии листинга и маркетинговой активности. Админы знают, кому нужен трафик.</span></div></li>
+        <li><div><b>ICO Drops</b><span class="desc">Огромная концентрация проектов на стадии листинга и маркетинговой активности.</span></div></li>
         <li><div><b>DeFi Million</b><span class="desc">Целевая аудитория для DeFi / Web3 вертикали.</span></div></li>
         <li><div><b>theKOLLAB</b><span class="desc">Коллаборационная B2B-платформа, агрегирует предложения от паблишеров и рекламодателей.</span></div></li>
         <li><div><b>TGStat-curated lists</b><span class="desc">Фильтр crypto + 50K+ members + ER &gt; 5% → DM админам за квоты на платный пост.</span></div></li>
       </ul>
     </div>
   </div>
-
   <div class="callout" style="margin-top:32px;">
     <div class="callout-icon">📡</div>
     <div class="callout-text">
-      <b>Стратегия:</b> сеем сообщение «крупная сеть крипто-сайтов открывает слоты на Q3/2026» в B2B-чатах + покупаем посты в 2–3 anchor-каналах для credibility-сигнала. Цель — inbound-поток от BD/маркетинга крипто-проектов.
+      <b>Стратегия:</b> сеем сообщение «крупная сеть крипто-сайтов открывает слоты на Q3/2026» в B2B-чатах + покупаем посты в 2–3 anchor-каналах для credibility-сигнала.
     </div>
   </div>
 </section>
@@ -676,7 +673,6 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
     <div><div class="section-label">// 06 — us-рынок</div><h2 class="section-title">Альтернативные каналы для US</h2></div>
     <div class="section-count">02 рычага</div>
   </div>
-
   <div class="tg-grid">
     <div class="tg-card">
       <div class="tg-head">
@@ -691,7 +687,6 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
         <li><div><b>Follow-up через 3–4 дня</b><span class="desc">Тонкое касание, не повторение → новая ценность.</span></div></li>
       </ul>
     </div>
-
     <div class="tg-card">
       <div class="tg-head">
         <div class="tg-icon magenta">⌬</div>
@@ -714,7 +709,6 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
     <div><div class="section-label">// 07 — автоматизация</div><h2 class="section-title">Tools — в работе параллельно</h2></div>
     <div class="section-count">04 модуля</div>
   </div>
-
   <div class="tools-grid">
     <div class="tool">
       <div class="tool-num">// tool_01</div>
@@ -749,81 +743,24 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid var(--
     <div><div class="section-label">// 08 — план на эту неделю</div><h2 class="section-title">7 дней — спринт</h2></div>
     <div class="section-count">по дням</div>
   </div>
-
   <div class="timeline">
-    <div class="tl">
-      <div class="tl-day">День 01</div>
-      <div class="tl-name">Affiliate-стек</div>
-      <div class="tl-list">
-        <div>→ заводим partners@</div>
-        <div>→ Bybit / OKX / MEXC</div>
-        <div>→ Bitget / KuCoin</div>
-        <div>→ BingX / Phemex / HTX</div>
-      </div>
-    </div>
-    <div class="tl">
-      <div class="tl-day">День 02</div>
-      <div class="tl-name">Wallets + Tax</div>
-      <div class="tl-list">
-        <div>→ Ledger / Trezor</div>
-        <div>→ Tangem (email)</div>
-        <div>→ SafePal apply</div>
-        <div>→ Koinly + CoinTracker</div>
-      </div>
-    </div>
-    <div class="tl">
-      <div class="tl-day">День 03</div>
-      <div class="tl-name">Конкурентный аудит</div>
-      <div class="tl-list">
-        <div>→ CoinDesk parse</div>
-        <div>→ Decrypt parse</div>
-        <div>→ Wayback freq</div>
-        <div>→ Notion-таблица</div>
-      </div>
-    </div>
-    <div class="tl">
-      <div class="tl-day">День 04</div>
-      <div class="tl-name">DeFi pipeline</div>
-      <div class="tl-list">
-        <div>→ Twitter/TG scan</div>
-        <div>→ 20 DeFi-targets</div>
-        <div>→ LinkedIn BD-контакты</div>
-        <div>→ status пометки</div>
-      </div>
-    </div>
-    <div class="tl">
-      <div class="tl-day">День 05</div>
-      <div class="tl-name">Telegram seeding</div>
-      <div class="tl-list">
-        <div>→ пост в B2B-чатах</div>
-        <div>→ оплата 2 anchor</div>
-        <div>→ TGStat curate</div>
-        <div>→ inbound CRM</div>
-      </div>
-    </div>
-    <div class="tl">
-      <div class="tl-day">День 06</div>
-      <div class="tl-name">US outreach</div>
-      <div class="tl-list">
-        <div>→ LinkedIn 30 InMail</div>
-        <div>→ Discord tickets ×5</div>
-        <div>→ RPC pitch отправка</div>
-        <div>→ ответы → CRM</div>
-      </div>
-    </div>
-    <div class="tl">
-      <div class="tl-day">День 07</div>
-      <div class="tl-name">Iterate &amp; follow-up</div>
-      <div class="tl-list">
-        <div>→ ответы → классиф.</div>
-        <div>→ follow-up batch</div>
-        <div>→ метрики недели</div>
-        <div>→ v2 шаблонов</div>
-      </div>
-    </div>
+    <div class="tl"><div class="tl-day">День 01</div><div class="tl-name">Affiliate-стек</div><div class="tl-list"><div>→ заводим partners@</div><div>→ Bybit / OKX / MEXC</div><div>→ Bitget / KuCoin</div><div>→ BingX / Phemex / HTX</div></div></div>
+    <div class="tl"><div class="tl-day">День 02</div><div class="tl-name">Wallets + Tax</div><div class="tl-list"><div>→ Ledger / Trezor</div><div>→ Tangem (email)</div><div>→ SafePal apply</div><div>→ Koinly + CoinTracker</div></div></div>
+    <div class="tl"><div class="tl-day">День 03</div><div class="tl-name">Конкурентный аудит</div><div class="tl-list"><div>→ CoinDesk parse</div><div>→ Decrypt parse</div><div>→ Wayback freq</div><div>→ Notion-таблица</div></div></div>
+    <div class="tl"><div class="tl-day">День 04</div><div class="tl-name">DeFi pipeline</div><div class="tl-list"><div>→ Twitter/TG scan</div><div>→ 20 DeFi-targets</div><div>→ LinkedIn BD-контакты</div><div>→ status пометки</div></div></div>
+    <div class="tl"><div class="tl-day">День 05</div><div class="tl-name">Telegram seeding</div><div class="tl-list"><div>→ пост в B2B-чатах</div><div>→ оплата 2 anchor</div><div>→ TGStat curate</div><div>→ inbound CRM</div></div></div>
+    <div class="tl"><div class="tl-day">День 06</div><div class="tl-name">US outreach</div><div class="tl-list"><div>→ LinkedIn 30 InMail</div><div>→ Discord tickets ×5</div><div>→ RPC pitch отправка</div><div>→ ответы → CRM</div></div></div>
+    <div class="tl"><div class="tl-day">День 07</div><div class="tl-name">Iterate &amp; follow-up</div><div class="tl-list"><div>→ ответы → классиф.</div><div>→ follow-up batch</div><div>→ метрики недели</div><div>→ v2 шаблонов</div></div></div>
   </div>
 </section>
 
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-label">// старт</div>
+  <h2 class="cta-title">Готов начать<br><em>прямо сейчас?</em></h2>
+  <p class="cta-sub">Пишите в Telegram — обсудим ваш стек, ниши и первые шаги за 30 минут.</p>
+  <a href="https://t.me/FXSCXI" target="_blank" class="cta-tg">→ Написать в Telegram</a>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -843,31 +780,27 @@ window.addEventListener('scroll',()=>{
 // Burger
 const burger=document.getElementById('burger');
 const mm=document.getElementById('mobileMenu');
-burger.addEventListener('click',()=>{
-  burger.classList.toggle('open');
-  mm.classList.toggle('open');
-});
-mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-  burger.classList.remove('open');mm.classList.remove('open');
-}));
+burger.addEventListener('click',()=>{burger.classList.toggle('open');mm.classList.toggle('open');});
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mm.classList.remove('open');}));
 
-// Particle sphere
+// Particle sphere — dark dots on white bg
 (function(){
   const canvas=document.getElementById('particleCanvas');
   if(!canvas)return;
   const ctx=canvas.getContext('2d');
   const w=window.innerWidth;
-  const isSmall=w<=480;
-  const isMobile=w<=900;
+  const isSmall=w<=480,isMobile=w<=900;
   const SIZE=isSmall?440:isMobile?546:710;
   canvas.width=SIZE;canvas.height=SIZE;
-  const CX=SIZE/2,CY=SIZE/2,R=isSmall?180:isMobile?230:275,TOTAL=isSmall?900:isMobile?1200:1500;
+  // Fewer points but MUCH bigger — coarse visible grain on white bg
+  const CX=SIZE/2,CY=SIZE/2,R=isSmall?185:isMobile?240:285,TOTAL=isSmall?320:isMobile?420:520;
   let hovering=false,rotX=0,rotY=0,tRX=0,tRY=0,pulseTime=0,autoAngle=0;
   const pts=[];
   const g=Math.PI*(3-Math.sqrt(5));
   for(let i=0;i<TOTAL;i++){
     const y=1-(i/(TOTAL-1))*2,r=Math.sqrt(1-y*y),t=g*i;
-    pts.push({ox:Math.cos(t)*r,oy:y,oz:Math.sin(t)*r,sz:Math.random()*1.2+0.3,br:Math.random()*.5+.3});
+    // Bigger size range: 1.5–4.5px per dot
+    pts.push({ox:Math.cos(t)*r,oy:y,oz:Math.sin(t)*r,sz:Math.random()*3+1.5,br:Math.random()*.4+.55});
   }
   const hero=document.querySelector('.hero');
   if(!isMobile){
@@ -889,9 +822,10 @@ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
     });
     proj.sort((a,b)=>a.depth-b.depth);
     proj.forEach(p=>{
-      const a=Math.min(p.br*(hovering?1:.75),1);
+      // High opacity so dots are clearly visible on white
+      const a=Math.min(p.br*(hovering?1:.85),1)*0.82;
       ctx.beginPath();ctx.arc(p.sx,p.sy,p.sz,0,Math.PI*2);
-      ctx.fillStyle=`rgba(255,255,255,${a.toFixed(2)})`;ctx.fill();
+      ctx.fillStyle=`rgba(0,0,0,${a.toFixed(2)})`;ctx.fill();
     });
     requestAnimationFrame(draw);
   }
